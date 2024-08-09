@@ -1,0 +1,233 @@
+openapi: 3.0.0
+info:
+  title: E-commerce API
+  version: 1.0.0
+paths:
+  /customers:
+    post:
+      summary: Create a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+      responses:
+        '201':
+          description: Customer created successfully
+  /customers/{customer_id}:
+    get:
+      summary: Get customer details
+      parameters:
+        - in: path
+          name: customer_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Customer details retrieved successfully
+    put:
+      summary: Update customer details
+      parameters:
+        - in: path
+          name: customer_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+      responses:
+        '200':
+          description: Customer updated successfully
+    delete:
+      summary: Delete a customer
+      parameters:
+        - in: path
+          name: customer_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Customer deleted successfully
+  /customer_accounts:
+    post:
+      summary: Create a new customer account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                customer_id:
+                  type: integer
+      responses:
+        '201':
+          description: Customer account created successfully
+  /customer_accounts/{account_id}:
+    get:
+      summary: Get customer account details
+      parameters:
+        - in: path
+          name: account_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Customer account details retrieved successfully
+    put:
+      summary: Update customer account details
+      parameters:
+        - in: path
+          name: account_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Customer account updated successfully
+    delete:
+      summary: Delete a customer account
+      parameters:
+        - in: path
+          name: account_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Customer account deleted successfully
+  /products:
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+      responses:
+        '201':
+          description: Product created successfully
+    get:
+      summary: List all products
+      responses:
+        '200':
+          description: List of products retrieved successfully
+  /products/{product_id}:
+    get:
+      summary: Get product details
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Product details retrieved successfully
+    put:
+      summary: Update product details
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+      responses:
+        '200':
+          description: Product updated successfully
+    delete:
+      summary: Delete a product
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Product deleted successfully
+  /orders:
+    post:
+      summary: Place a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: integer
+                product_ids:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '201':
+          description: Order placed successfully
+  /orders/{order_id}:
+    get:
+      summary: Get order details
+      parameters:
+        - in: path
+          name: order_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          description: Order details retrieved successfully
